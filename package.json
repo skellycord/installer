@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "inquirer": "^9.2.23",
+    "node-fetch": "^3.3.2"
+  },
+  "name": "skellycord-installer",
+  "version": "1.0.0",
+  "description": "NPM package for installing skellycord",
+  "main": "src/index.mjs",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skellycord/installer.git"
+  },
+  "author": "Skullbite",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skellycord/installer/issues"
+  },
+  "homepage": "https://github.com/skellycord/installer#readme",
+  "bin": {
+    "skellycord-installer": "src/index.mjs"
+  },
+  "devDependencies": {
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0"
+  }
+}
