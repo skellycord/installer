@@ -1,6 +1,6 @@
-import { REPO } from "./utils.js";
+import { REPO, blue } from "./utils.js";
 import axios from "axios";
-import { existsSync, readdirSync } from "fs";
+import { existsSync, readdirSync, rmSync, } from "fs";
 import { homedir } from "os";
 import { join } from "path";
 
