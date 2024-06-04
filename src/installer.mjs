@@ -1,12 +1,13 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
-import fetch from "node-fetch";
 import { existsSync } from "fs";
-import { findPath, REPO, NIGHTLY_RELEASE_ID, deleteAsar, blue, red, yellow } from "./utils.js";
+import { blue, red, yellow } from "./utils.js";
 import { writeFile } from "fs/promises";
 import { join } from "path";
 import inject from "./injectorFuncs/inject.js";
 import uninject from "./injectorFuncs/uninject.js";
+import { downloadAsar, findPath } from "./backend.mjs";
+
 
 if (process.argv[2]) import("./oneshot.js");
 
@@ -24,8 +25,10 @@ else (function() {
     }
     
     if (!availibleVersions.length) {
-        console.log("No discord instances are availible.");
+        red("No discord instances are availible.");
         preExit();
+
+        return;
     }
     
     const questions = [
@@ -59,9 +62,12 @@ else (function() {
     
         prompt(questions[1]).then(ans => {
             const deskswordPath = findPath(ans.discordVer);
+            // anomoly code since this *shouldn't* happen
             if (!existsSync(deskswordPath)) {
-                console.log("No discord installation found.");
+                red("No discord installation found.");
                 preExit();
+
+                return;
             }
     
             console.clear();
@@ -85,24 +91,13 @@ else (function() {
     });
 })();
 
+
 export async function downloadAndCopy(corePath, exitCallback) {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/releases/${NIGHTLY_RELEASE_ID}/assets`);
-    const assets = await res.json();
+    const fileName = "skellycord.asar";
 
-    const { name, browser_download_url } = assets.find(a => a.name === "skellycord.asar");
-
-    const skellysar = await fetch(browser_download_url);
-    const content = await skellysar.text();
-
-    try {
-        blue("Downloading skellycord.asar...");
-        await writeFile(join(corePath, name), content);
-    }
-    catch (e) {
-        red("Failed to download skellycord.asar.");
-        exitCallback(1);
-    }
-
+    blue(`Downloading ${fileName}...`);
+    const content = await downloadAsar();
+    
     blue("Writing skellycord.asar to core...");
     await writeFile(join(corePath, "skellycord.asar"), content);
 }

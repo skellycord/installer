@@ -1,6 +1,7 @@
 import { join } from "path";
-import { findPath, red, green } from "../utils.js";
+import { red, green } from "../utils.js";
 import { readFileSync, writeFile } from "fs";
+import { findPath } from "../backend.mjs";
 
 export default function(target, deleteCallback, exitCallback) {
     const displayTarget = `discord${target !== "stable" ? `-${target}` : ""}`;

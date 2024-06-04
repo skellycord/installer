@@ -1,5 +1,5 @@
 const [, , command, version ] = process.argv;
-import { downloadAndCopy, preExit } from "./index.mjs";
+import { downloadAndCopy, preExit } from "./installer.mjs";
 import inject from "./injectorFuncs/inject.js";
 import uninject from "./injectorFuncs/uninject.js";
 import { blue, deleteAsar, red } from "./utils.js";

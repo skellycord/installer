@@ -1,6 +1,8 @@
-import { findPath, red, green } from "../utils.js";
+import { red, green } from "../utils.js";
 import { join } from "path";
 import { readFileSync, writeFile } from "fs";
+import { findPath } from "../backend.mjs";
+import { preExit } from "../installer.mjs";
 
 export default function(target, writeCallback, exitCallback) {
     const displayTarget = `discord${target !== "stable" ? `-${target}` : ""}`;
@@ -34,7 +36,14 @@ export default function(target, writeCallback, exitCallback) {
         }
     }
 
-    writeCallback(corePath, exitCallback).then(() => {
+    writeCallback(corePath, exitCallback)
+    .catch(e => {
+        red("Write process failed.");
+        console.error(e);
+
+        preExit(1);
+    })
+    .then(() => {
         const code = "require('./skellycord.asar/main.min.js');\nmodule.exports = require('./core.asar');";
 
         writeFile(join(corePath, "index.js"), code, err => {
