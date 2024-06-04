@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "inquirer": "^9.2.23",
-    "node-fetch": "^3.3.2"
+    "axios": "^1.7.2",
+    "inquirer": "^9.2.23"
   },
   "name": "skellycord-installer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NPM package for installing skellycord",
-  "main": "src/index.mjs",
+  "main": "src/backend.mjs",
   "type": "module",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/skellycord/installer#readme",
   "bin": {
-    "skellycord-installer": "src/index.mjs"
+    "skellycord-installer": "src/installer.mjs"
   },
   "devDependencies": {
     "eslint": "^9.3.0",
