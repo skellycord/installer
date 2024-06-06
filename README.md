@@ -1,6 +1,6 @@
 # Skellycord Installer
 
-Command line package for skellycord installation.
+Command line package for installing [skellycord](https://github.com/skellycord/skellycord)
 
 ## Installation
 ```zsh
