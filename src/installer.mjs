@@ -4,7 +4,7 @@ import { existsSync } from "fs";
 import { blue, red, yellow } from "./utils.js";
 import { writeFile } from "fs/promises";
 import { join } from "path";
-import { inject, uninject } from "./injectorFuncs";
+import { inject, uninject } from "./injectorFuncs/index.js";
 import { downloadAsar, findPath } from "./backend.mjs";
 
 

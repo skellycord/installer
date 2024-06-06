@@ -3,7 +3,6 @@ import axios from "axios";
 import { existsSync, readdirSync, rmSync, } from "fs";
 import { homedir } from "os";
 import { join } from "path";
-
 const { env, platform } = process;
 
 const MACOS_PARTIAL_PATH = ["Library", "Application Support"];
@@ -11,7 +10,7 @@ const LINUX_PARTIAL_PATH = [".config"];
 const FLATPAK_PARTIAL_PATH = [".var", "app", "com.discordapp.Discord", "config", "discord"];
 
 export * as utils from "./utils.js";
-export { inject, uninject } from "./injectorFuncs";
+export { inject, uninject } from "./injectorFuncs/index.js";
 
 export function findPath(target) {
     let suffix = target !== "stable" ? target : "";
