@@ -4,7 +4,7 @@
     "inquirer": "^9.2.23"
   },
   "name": "skellycord-installer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "NPM package for installing skellycord",
   "main": "src/backend.mjs",
   "type": "module",
