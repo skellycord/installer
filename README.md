@@ -10,5 +10,5 @@ npm i -g skellycord-installer
 skellycord-installer 
 
 # To run in oneshot mode
-skellycord-installer [inject|uninject] [stable|ptb|canary] 
+skellycord-installer <inject|uninject> <stable|ptb|canary>
 ```

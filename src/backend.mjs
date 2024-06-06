@@ -11,6 +11,7 @@ const LINUX_PARTIAL_PATH = [".config"];
 const FLATPAK_PARTIAL_PATH = [".var", "app", "com.discordapp.Discord", "config", "discord"];
 
 export * as utils from "./utils.js";
+export { inject, uninject } from "./injectorFuncs";
 
 export function findPath(target) {
     let suffix = target !== "stable" ? target : "";

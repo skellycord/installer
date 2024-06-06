@@ -4,8 +4,7 @@ import { existsSync } from "fs";
 import { blue, red, yellow } from "./utils.js";
 import { writeFile } from "fs/promises";
 import { join } from "path";
-import inject from "./injectorFuncs/inject.js";
-import uninject from "./injectorFuncs/uninject.js";
+import { inject, uninject } from "./injectorFuncs";
 import { downloadAsar, findPath } from "./backend.mjs";
 
 
@@ -92,7 +91,7 @@ else (function() {
 })();
 
 
-export async function downloadAndCopy(corePath, exitCallback) {
+export async function downloadAndCopy(corePath) {
     const fileName = "skellycord.asar";
 
     blue(`Downloading ${fileName}...`);
