@@ -5,7 +5,7 @@ import { blue, red, yellow } from "./utils.js";
 import { writeFile } from "fs/promises";
 import { join } from "path";
 import { inject, uninject } from "./injectorFuncs/index.js";
-import { downloadAsar, findPath } from "./backend.mjs";
+import { deleteAsar, downloadAsar, findPath } from "./backend.mjs";
 
 
 if (process.argv[2]) import("./oneshot.js");

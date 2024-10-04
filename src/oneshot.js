@@ -1,7 +1,8 @@
 const [, , command, version ] = process.argv;
 import { downloadAndCopy, preExit } from "./installer.mjs";
 import { inject, uninject } from "./injectorFuncs/index.js";
-import { blue, deleteAsar, red } from "./utils.js";
+import { blue, red } from "./utils.js";
+import { deleteAsar } from "./backend.mjs"
 
 const VALID_COMMANDS = [
     "inject",
