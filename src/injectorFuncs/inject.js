@@ -8,6 +8,7 @@ export default function(target, writeCallback, exitCallback) {
     let corePath;
     try {
         corePath = findPath(target);
+        
     }
     catch (e) {
         red(`No ${displayTarget} installation found.`);
@@ -43,8 +44,23 @@ export default function(target, writeCallback, exitCallback) {
         exitCallback(1);
     })
     .then(() => {
-        const code = "require('./skellycord.asar/main.min.js');\nmodule.exports = require('./core.asar');";
-
+        let code = 
+"// SKELLYCORD\n" +
+"const { existsSync, rmSync, renameSync } = require('fs');\n" +
+"const { join } = require('path');\n(" +
+(() => {
+if (existsSync(join(__dirname, "_skellycord.asar"))) {
+    rmSync(join(__dirname, "skellycord.asar"));
+    renameSync(
+        join(__dirname, "_skellycord.asar"), 
+        join(__dirname, "skellycord.asar")
+    );
+}
+}).toString() + 
+")();\n" +
+"require('./skellycord.asar/main.min.js');\n" +
+"module.exports = require('./core.asar');";
+        
         writeFile(join(corePath, "index.js"), code, err => {
             if (err) red("Failed to write to the desktop core.");
             else green("Skellycord injected successfully. Be sure to restart discord.");
@@ -53,6 +69,4 @@ export default function(target, writeCallback, exitCallback) {
             return;
         });
     });
-
-    
 };
