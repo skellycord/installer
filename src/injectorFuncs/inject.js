@@ -45,12 +45,12 @@ export default function(target, writeCallback, exitCallback) {
     })
     .then(() => {
         let code = 
-"// SKELLYCORD\n" +
-"const { existsSync, rmSync, renameSync } = require('fs');\n" +
+"// SKELLYCORD 🐾\n" +
+"const { existsSync, unlinkSync, renameSync } = require('fs');\n" +
 "const { join } = require('path');\n(" +
 (() => {
 if (existsSync(join(__dirname, "_skellycord.asar"))) {
-    rmSync(join(__dirname, "skellycord.asar"));
+    unlinkSync(join(__dirname, "skellycord.asar"));
     renameSync(
         join(__dirname, "_skellycord.asar"), 
         join(__dirname, "skellycord.asar")
